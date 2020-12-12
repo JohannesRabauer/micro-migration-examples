@@ -2,16 +2,17 @@ package de.johannes_rabauer.micromigration.examples.simple;
 
 import java.util.Date;
 
-import one.microstream.storage.types.EmbeddedStorage;
-import one.microstream.storage.types.EmbeddedStorageManager;
+import de.johannes_rabauer.micromigration.MigrationEmbeddedStorage;
+import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 
 public class Main 
 {
 	public static void main(String[] args) 
 	{
-		final EmbeddedStorageManager storageManager = EmbeddedStorage.start();
+		final MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start();
 		System.out.println(storageManager.root());
 		storageManager.setRoot("Hello World! @ " + new Date());
 		storageManager.storeRoot();
+		storageManager.shutdown();
 	}
 }
