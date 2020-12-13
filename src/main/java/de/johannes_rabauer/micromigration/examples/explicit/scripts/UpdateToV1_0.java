@@ -1,4 +1,4 @@
-package de.johannes_rabauer.micromigration.examples.simple.scripts;
+package de.johannes_rabauer.micromigration.examples.explicit.scripts;
 
 import java.util.Date;
 
