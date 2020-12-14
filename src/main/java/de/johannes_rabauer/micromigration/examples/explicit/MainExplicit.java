@@ -7,8 +7,7 @@ import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.examples.explicit.scripts.UpdateToV1_0;
 import de.johannes_rabauer.micromigration.examples.explicit.scripts.UpdateToV1_1;
 import de.johannes_rabauer.micromigration.migrater.ExplicitMigrater;
-
-public class Main 
+public class MainExplicit 
 {
 	public static void main(String[] args) 
 	{
