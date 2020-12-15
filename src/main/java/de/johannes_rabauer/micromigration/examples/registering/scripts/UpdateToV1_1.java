@@ -2,8 +2,8 @@ package de.johannes_rabauer.micromigration.examples.registering.scripts;
 
 import java.util.Date;
 
-import de.johannes_rabauer.micromigration.AutoRegisteringMigrationScript;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
+import de.johannes_rabauer.micromigration.scripts.AutoRegisteringMigrationScript;
 import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
 
 @Deprecated

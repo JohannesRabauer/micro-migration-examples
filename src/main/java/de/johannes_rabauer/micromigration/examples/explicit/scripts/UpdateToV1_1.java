@@ -2,8 +2,8 @@ package de.johannes_rabauer.micromigration.examples.explicit.scripts;
 
 import java.util.Date;
 
-import de.johannes_rabauer.micromigration.MicroMigrationScript;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
+import de.johannes_rabauer.micromigration.scripts.MicroMigrationScript;
 import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
 
 public class UpdateToV1_1 implements MicroMigrationScript
