@@ -1,9 +1,9 @@
 package de.johannes_rabauer.micromigration.examples.practical.scripts;
 
-import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.examples.practical.v1AndHigher.Address;
 import de.johannes_rabauer.micromigration.scripts.MicroMigrationScript;
 import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
+import one.microstream.storage.types.EmbeddedStorageManager;
 
 public class UpdateToV1_0 implements MicroMigrationScript
 {
@@ -15,8 +15,8 @@ public class UpdateToV1_0 implements MicroMigrationScript
 
 	@Override
 	public void execute(
-		Object                          root          ,
-		MigrationEmbeddedStorageManager storageManager
+		Object                 root          ,
+		EmbeddedStorageManager storageManager
 	)
 	{
 		System.out.println("Executing Script for v1.0...");
