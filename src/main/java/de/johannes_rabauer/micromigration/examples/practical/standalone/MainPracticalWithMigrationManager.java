@@ -1,12 +1,12 @@
-package de.johannes_rabauer.micromigration.examples.practical;
+package de.johannes_rabauer.micromigration.examples.practical.standalone;
 
-import de.johannes_rabauer.micromigration.MigrationEmbeddedStorage;
-import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
-import de.johannes_rabauer.micromigration.examples.practical.scripts.UpdateToV1_0;
-import de.johannes_rabauer.micromigration.examples.practical.scripts.UpdateToV2_0;
+import de.johannes_rabauer.micromigration.MigrationManager;
 import de.johannes_rabauer.micromigration.examples.practical.v0.BusinessBranch;
 import de.johannes_rabauer.micromigration.examples.practical.v0.Customer;
 import de.johannes_rabauer.micromigration.migrater.ExplicitMigrater;
+import de.johannes_rabauer.micromigration.version.VersionedObject;
+import one.microstream.storage.types.EmbeddedStorage;
+import one.microstream.storage.types.EmbeddedStorageManager;
 
 /**
  * A practical example of usage in a few steps:
@@ -20,35 +20,39 @@ import de.johannes_rabauer.micromigration.migrater.ExplicitMigrater;
  * @author Johannes Rabauer
  *
  */
-public class MainPractical 
+public class MainPracticalWithMigrationManager 
 {
 	public static void main(String[] args) 
 	{
 		//V0.0
-		final ExplicitMigrater emptyMigrater = new ExplicitMigrater();
-		try(MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(emptyMigrater))
+		try(EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
-			storageManager.setRoot(createDummyBranch());
+			VersionedObject versionedBranch = new VersionedObject(createDummyBranch());
+			storageManager.setRoot(versionedBranch);
 			storageManager.storeRoot();
 			System.out.println(storageManager.root().toString());
 		}
 		
 		
 		//V1.0
-		final ExplicitMigrater migraterWithV1 = new ExplicitMigrater(new UpdateToV1_0());
-		try(MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migraterWithV1))
+		try(EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
+			final ExplicitMigrater migraterWithV1 = new ExplicitMigrater(new UpdateToV1_0());
+			VersionedObject versionedBranch = (VersionedObject)storageManager.root();
+			new MigrationManager(versionedBranch, migraterWithV1, storageManager)
+			.migrate(versionedBranch);
 			System.out.println(storageManager.root().toString());
 		}
 		
 		
 		//V2.0
-		final ExplicitMigrater migraterWithV2 = new ExplicitMigrater(
-				new UpdateToV1_0(),
-				new UpdateToV2_0()
-		);
-		try(MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migraterWithV2))
+
+		try(EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
+			final ExplicitMigrater migraterWithV2 = new ExplicitMigrater(new UpdateToV1_0(), new UpdateToV2_0());
+			VersionedObject versionedBranch = (VersionedObject)storageManager.root();
+			new MigrationManager(versionedBranch, migraterWithV2, storageManager)
+			.migrate(versionedBranch);
 			System.out.println(storageManager.root().toString());
 		}
 	}

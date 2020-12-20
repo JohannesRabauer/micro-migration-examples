@@ -10,7 +10,7 @@ public class BusinessBranch
 	
 	@Override
 	public String toString() {
-		String toString = "Branch v1\nCustomers:";
+		String toString = "Branch v1 and higher\nCustomers:";
 		for (Customer customer : customers) {
 			toString += "\n  " + customer.name;
 		}
