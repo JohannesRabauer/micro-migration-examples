@@ -2,16 +2,16 @@ package de.johannes_rabauer.micromigration.examples.practical.embedded;
 
 import de.johannes_rabauer.micromigration.examples.practical.v1AndHigher.BusinessBranch;
 import de.johannes_rabauer.micromigration.examples.practical.v1AndHigher.Customer;
-import de.johannes_rabauer.micromigration.scripts.MicroMigrationScript;
-import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
+import de.johannes_rabauer.micromigration.scripts.MigrationScript;
+import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import one.microstream.storage.types.EmbeddedStorageManager;
 
-public class UpdateToV2_0 implements MicroMigrationScript
+public class UpdateToV2_0 implements MigrationScript
 {
 	@Override
-	public MicroMigrationVersion getTargetVersion() 
+	public MigrationVersion getTargetVersion() 
 	{
-		return new MicroMigrationVersion(2,0);
+		return new MigrationVersion(2,0);
 	}
 
 	@Override

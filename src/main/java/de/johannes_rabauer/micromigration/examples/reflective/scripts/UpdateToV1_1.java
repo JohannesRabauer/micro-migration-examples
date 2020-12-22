@@ -2,16 +2,16 @@ package de.johannes_rabauer.micromigration.examples.reflective.scripts;
 
 import java.util.Date;
 
-import de.johannes_rabauer.micromigration.scripts.MicroMigrationScript;
-import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
+import de.johannes_rabauer.micromigration.scripts.MigrationScript;
+import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import one.microstream.storage.types.EmbeddedStorageManager;
 
-public class UpdateToV1_1 implements MicroMigrationScript
+public class UpdateToV1_1 implements MigrationScript
 {
 	@Override
-	public MicroMigrationVersion getTargetVersion() 
+	public MigrationVersion getTargetVersion() 
 	{
-		return new MicroMigrationVersion(1,1);
+		return new MigrationVersion(1,1);
 	}
 
 	public void execute(
