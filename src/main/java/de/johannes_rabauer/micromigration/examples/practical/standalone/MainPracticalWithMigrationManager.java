@@ -27,7 +27,7 @@ public class MainPracticalWithMigrationManager
 		//V0.0
 		try(EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
-			VersionedObject versionedBranch = new VersionedObject(createDummyBranch());
+			VersionedObject<BusinessBranch> versionedBranch = new VersionedObject<>(createDummyBranch());
 			storageManager.setRoot(versionedBranch);
 			storageManager.storeRoot();
 			System.out.println(storageManager.root().toString());
@@ -38,9 +38,9 @@ public class MainPracticalWithMigrationManager
 		try(EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
 			final ExplicitMigrater migraterWithV1 = new ExplicitMigrater(new UpdateToV1_0());
-			VersionedObject versionedBranch = (VersionedObject)storageManager.root();
+			VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
 			new MigrationManager(versionedBranch, migraterWithV1, storageManager)
-			.migrate(versionedBranch);
+				.migrate(versionedBranch);
 			System.out.println(storageManager.root().toString());
 		}
 		
@@ -50,9 +50,9 @@ public class MainPracticalWithMigrationManager
 		try(EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
 			final ExplicitMigrater migraterWithV2 = new ExplicitMigrater(new UpdateToV1_0(), new UpdateToV2_0());
-			VersionedObject versionedBranch = (VersionedObject)storageManager.root();
+			VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
 			new MigrationManager(versionedBranch, migraterWithV2, storageManager)
-			.migrate(versionedBranch);
+				.migrate(versionedBranch);
 			System.out.println(storageManager.root().toString());
 		}
 	}

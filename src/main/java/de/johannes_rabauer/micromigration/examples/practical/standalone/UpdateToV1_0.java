@@ -1,12 +1,13 @@
 package de.johannes_rabauer.micromigration.examples.practical.standalone;
 
+import de.johannes_rabauer.micromigration.examples.practical.v0.BusinessBranch;
 import de.johannes_rabauer.micromigration.examples.practical.v1AndHigher.Address;
+import de.johannes_rabauer.micromigration.scripts.Context;
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import de.johannes_rabauer.micromigration.version.VersionedObject;
-import one.microstream.storage.types.EmbeddedStorageManager;
 
-public class UpdateToV1_0 implements MigrationScript
+public class UpdateToV1_0 implements MigrationScript<VersionedObject<Object>>
 {
 	@Override
 	public MigrationVersion getTargetVersion() 
@@ -15,15 +16,12 @@ public class UpdateToV1_0 implements MigrationScript
 	}
 
 	@Override
-	public void execute(
-		Object                 root          ,
-		EmbeddedStorageManager storageManager
-	)
+	public void migrate(Context<VersionedObject<Object>> context) 
 	{
 		System.out.println("Executing Script for v1.0...");
-		VersionedObject versionedBranch = (VersionedObject)root;
+		VersionedObject<Object> versionedBranch = context.getMigratingObject();
 		de.johannes_rabauer.micromigration.examples.practical.v0.BusinessBranch oldBranch = 
-				((de.johannes_rabauer.micromigration.examples.practical.v0.BusinessBranch)versionedBranch.getObject());
+				(BusinessBranch) versionedBranch.getObject();
 		de.johannes_rabauer.micromigration.examples.practical.v1AndHigher.BusinessBranch newBranch = 
 				new de.johannes_rabauer.micromigration.examples.practical.v1AndHigher.BusinessBranch();
 		for (de.johannes_rabauer.micromigration.examples.practical.v0.Customer oldCustomer : oldBranch.customers) 
@@ -38,7 +36,7 @@ public class UpdateToV1_0 implements MigrationScript
 			newBranch.customers.add(newCustomer);
 		}
 		versionedBranch.setObject(newBranch);
-		storageManager.store(versionedBranch);
+		context.getStorageManager().store(versionedBranch);
 		System.out.println("Done executing Script for v1.0");
 	}
 }

@@ -2,24 +2,22 @@ package de.johannes_rabauer.micromigration.examples.explicit.scripts;
 
 import java.util.Date;
 
+import de.johannes_rabauer.micromigration.scripts.Context;
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
-import one.microstream.storage.types.EmbeddedStorageManager;
 
-public class UpdateToV1_1 implements MigrationScript
+public class UpdateToV1_1 implements MigrationScript<String>
 {
 	@Override
 	public MigrationVersion getTargetVersion() 
 	{
 		return new MigrationVersion(1,1);
 	}
-
-	public void execute(
-		Object                 root          ,
-		EmbeddedStorageManager storageManager
-	)
+	
+	@Override
+	public void migrate(Context<String> context) 
 	{
 		System.out.println("Update " + getTargetVersion().toString() + " executed.");
-		storageManager.setRoot("Hello World! @ " + new Date() + " Update 1.1");
+		context.getStorageManager().setRoot("Hello World! @ " + new Date() + " Update 1.1");
 	}
 }
