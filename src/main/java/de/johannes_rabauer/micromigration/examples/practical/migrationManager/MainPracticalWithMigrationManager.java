@@ -1,4 +1,4 @@
-package de.johannes_rabauer.micromigration.examples.practical.standalone;
+package de.johannes_rabauer.micromigration.examples.practical.migrationManager;
 
 import de.johannes_rabauer.micromigration.MigrationManager;
 import de.johannes_rabauer.micromigration.examples.practical.v0.BusinessBranch;
@@ -46,7 +46,6 @@ public class MainPracticalWithMigrationManager
 		
 		
 		//V2.0
-
 		try(EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
 			final ExplicitMigrater migraterWithV2 = new ExplicitMigrater(new UpdateToV1_0(), new UpdateToV2_0());

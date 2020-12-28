@@ -1,7 +1,7 @@
 # micro-migration-examples
 Examples for the MicroMigration-Library
 
-Currently contains three major examples:
+Currently contains four major examples:
 ## Example with `ExplicitMigrater`
 In the package `de.johannes_rabauer.micromigration.examples.explicit` there is a simple example with explicitly listed upgrade scripts.
 This is the most straight forward approach to use migration scripts.
@@ -12,6 +12,12 @@ So here all `MicroMigrationScript`s in the defined  `de.johannes_rabauer.micromi
 
 Since the `ReflectiveMigrater` uses the [Reflections library](https://github.com/ronmamo/reflections) it is extracted to its [own repository](https://github.com/JohannesRabauer/micro-migration-reflection).
 
-## Example with `AutoRegisteringMigrater`
-Package `de.johannes_rabauer.micromigration.examples.registering` contains a experimental migrater which uses a global, static list
-where scripts register themselves. Unfortunatly this currently doesn't work. Don't use this yet!
+## Practical examples
+The package `de.johannes_rabauer.micromigration.examples.practical.embedded` contains examples
+that are just a bit more complex than the other examples and should allow an insight about the usage in a 
+practical environment.
+
+There is one example implemented with the `MigrationEmbeddedStorageManager` and another with the
+plain `MigrationManager`, so it is clear what the difference between these two approaches is.
+In both implementations the first update migrates from version 0 to 1 and converts an "old" `BusinessBranch`
+to a newer one. The second update only adds more `Customer`s to the existing `BusinessBranch`.

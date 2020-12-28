@@ -1,4 +1,4 @@
-package de.johannes_rabauer.micromigration.examples.practical.standalone;
+package de.johannes_rabauer.micromigration.examples.practical.migrationManager;
 
 import de.johannes_rabauer.micromigration.examples.practical.v0.BusinessBranch;
 import de.johannes_rabauer.micromigration.examples.practical.v1AndHigher.Address;
