@@ -11,9 +11,9 @@ import one.microstream.storage.types.EmbeddedStorageManager;
 /**
  * A practical example of usage in a few steps:
  * <ul>
- * <li> v0.0: Storage is created without any updates. Only stores a new {@link de.johannes_rabauer.micromigration.examples.practical.v0.BusinessBranch}<br/>
+ * <li> v0.0: Storage is created without any updates. Only stores a new {@link de.johannes_rabauer.micromigration.examples.practical.v0.BusinessBranch}
  * <li> v1.0: The BusinessBranch has a new implementation {@link de.johannes_rabauer.micromigration.examples.practical.v1AndHigher.BusinessBranch}.
- * The old branch is converted to the new implementation through the {@link UpdateToV1_0} script. <br/>
+ * The old branch is converted to the new implementation through the {@link UpdateToV1_0} script.
  * <li> v2.0: A new customer is added through the {@link UpdateToV2_0} script.
  * </ul>
  * The storage is restarted after every update to simulate a complete lifecycle of the datastore.
