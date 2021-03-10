@@ -22,6 +22,10 @@ import one.microstream.storage.types.EmbeddedStorageManager;
  */
 public class MainPracticalWithMigrationManager 
 {
+	/**
+	 * Suppressed Warning "unchecked" because it is given, that the correct object is returned.
+	 */
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) 
 	{
 		//V0.0
